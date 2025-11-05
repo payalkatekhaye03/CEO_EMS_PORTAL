@@ -1,0 +1,284 @@
+/* Root container */
+.edit-fees-page {
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+ 
+  /* Sidebar space */
+  margin-left: 250px;
+  margin-top: 65px;  /* Adjust as per your header */
+}
+ 
+/* Header section */
+.edit-fees-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+ 
+.edit-fees-header-left {
+  display: flex;
+  align-items: center;
+}
+ 
+.edit-fees-header-left h2 {
+  margin-left: 10px;
+  font-size: 25px;
+  font-family: Montserrat;
+}
+ 
+.edit-fees-menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+ 
+.edit-fees-header-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+ 
+/* ===== Custom Select Wrapper ===== */
+.edit-fees-custom-select {
+  position: relative;
+  display: inline-block;
+}
+ 
+.edit-fees-custom-select select {
+  padding: 10px 36px 10px 16px; /* extra right padding for arrow */
+  font-size: 14px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  background-color: white;
+  min-width: 150px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+ 
+.edit-fees-custom-select select:hover {
+  border-color: #bbb;
+}
+ 
+.edit-fees-custom-select select:focus {
+  outline: none;
+  border-color: #3e6be1;
+  box-shadow: 0 0 0 3px rgba(62, 107, 225, 0.2);
+}
+ 
+/* ✅ Custom arrow visible */
+.edit-fees-custom-select::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid #333;
+  border-bottom: 2px solid #333;
+  transform: translateY(-50%) rotate(-45deg);
+  pointer-events: none;
+}
+
+ 
+/* hamburger (icon-only) for EditFees page */
+.edit-fees-hamburger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;   /* flat, no white box */
+  box-shadow: none;
+  border-radius: 6px;
+  color: #111827;            /* controls bar color via currentColor */
+  cursor: pointer;
+  padding: 4px;
+  line-height: 0;
+}
+ 
+/* visible focus ring for keyboard users */
+.edit-fees-hamburger:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+  border-radius: 6px;
+}
+ 
+/* svg sizing & pointer behaviour */
+.edit-fees-hamburger svg {
+  width: 20px;
+  height: 14px;
+  display: block;
+  pointer-events: none; /* let button handle clicks */
+  /* vertical-align: middle; */
+}
+ 
+/* header-left spacing */
+.edit-fees-header .edit-fees-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+ 
+/* make sure edit-fees header doesn't accidentally inherit global hamburger styles */
+.edit-fees-header .edit-fees-menu-icon,
+.edit-fees-header .hamburger {
+  display: none; /* hide any previous menu spans/buttons if present */
+}
+ 
+/* EditFees container */
+.edit-fees-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+  min-height: 100vh;
+  color: #333;
+}
+ 
+.edit-fees-title {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #3e6be1;
+}
+ 
+/* Form layout */
+.edit-fees-form .edit-fees-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+ 
+.edit-fees-form-group {
+  display: flex;
+  flex-direction: column;
+}
+ 
+.edit-fees-form-group label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 14px;
+}
+ 
+.edit-fees-form-group input,
+.edit-fees-form-group select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.2s ease;
+}
+ 
+.edit-fees-form-group input:focus,
+.edit-fees-form-group select:focus {
+  border-color: #3e6be1;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(62, 107, 225, 0.2);
+}
+ 
+.edit-fees-submit-btn {
+  margin-top: 20px;
+  padding: 10px 16px;
+  background: #3e6be1;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+ 
+.edit-fees-submit-btn:hover {
+  background: #3256b3;
+}
+ 
+/* Get Fees section */
+.edit-fees-get-fees {
+  margin-top: 30px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+ 
+.edit-fees-get-fees h3 {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+ 
+.edit-fees-get-fees-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+ 
+.edit-fees-get-fees-row select,
+.edit-fees-get-fees-row input,
+.edit-fees-get-fees-row button {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+ 
+.edit-fees-get-fees-row button {
+  background: #3e6be1;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+ 
+.edit-fees-get-fees-row button:hover {
+  background: #3256b3;
+}
+ 
+.edit-fees-no-fees {
+  text-align: center;
+  margin: 20px 0;
+  font-weight: 600;
+  color: #777;
+}
+ 
+.edit-fees-found {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #e9f7ef;
+  border-radius: 6px;
+  border: 1px solid #c3e6cb;
+}
+ 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .edit-fees-form .edit-fees-form-grid {
+    grid-template-columns: 1fr;
+  }
+ 
+  .edit-fees-page {
+    margin-left: 0;
+    padding: 15px;
+  }
+}
+
+/* Remove sidebar space on tablets/phones */
+@media (max-width: 1180px) {
+  .edit-fees-page {
+    margin-left: 0 !important;   /* remove blank left gutter */
+    padding-left: 20px;          /* small padding so content isn’t glued */
+    padding-right: 20px;
+  }
+}
+
+

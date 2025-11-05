@@ -12,6 +12,10 @@ import Login from "../Modules/Login/Login";
 import Exam from "../Modules/Students/Exams/Exams";
 import Attendence from "../Modules/Students/Attendence/Attendence";
 import Results from "../Modules/Students/Results/Results";
+import Paper from "../Modules/Papers/Paper";
+import PaperPattern from "../Modules/PaperPattern/PaperPattern";
+import EditFees from "../Modules/Fees/EditFees";
+// import DetailedResult from "../Modules/Students/Results/DetailedResult";
 
 const AppRoutes = () => {
   return (
@@ -25,16 +29,22 @@ const AppRoutes = () => {
       {/* Teachers */}
       <Route path="/teacher/list" element={<List />} />
       <Route path="/teacher/papers" element={<Papers />} />
-      <Route path="/teacher/questionbank" element={<QuestionBank />} />
+      <Route path="/teacher/question-bank" element={<QuestionBank />} />
       <Route path="/teacher/salary" element={<Salary />} />
 
       {/* Students */}
       <Route path="/students/attendence" element={<Attendence />} />
       <Route path="/students/exams" element={<Exam />} />
       <Route path="/students/results" element={<Results />} />
+      {/* <Route path="/students/results/detailedresults" element={<DetailedResult />} /> */}
 
       <Route path="/fees" element={<Fees />} />
+      <Route path="/fees/edit" element={<EditFees />} />
+
+      <Route path="/papers" element={<Paper />} />
+      <Route path="/papers/paper-patterns" element={<PaperPattern />} />
       <Route path="/profile" element={<Profile />} />
+      
       {/* Default redirect */}
       <Route path="*" element={<Dashboard />} />
     </Routes>
@@ -42,3 +52,4 @@ const AppRoutes = () => {
 };
 
 export default AppRoutes;
+  

@@ -1,3 +1,6 @@
+import { useState } from "react";
+import Header from "../../../Components/Header/Header";
+import Sidebar from "../../../Components/SideBar/SideBar";
 import "./Salary.css";
 
 const teachers = [
@@ -14,11 +17,41 @@ const teachers = [
 ];
 
 export default function Salary() {
+  // control sidebar open/close
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // handler to toggle
+  const toggleSidebar = () => setSidebarOpen((s) => !s);
+
   return (
     <div className="salary-page">
+      <Header />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
       <div className="salary-root">
         <header className="salary-header">
-          <button className="hamburger" aria-label="menu">☰</button>
+          <button
+            className="hamburger"
+            aria-label="Open menu"
+            aria-expanded={sidebarOpen}
+            onClick={toggleSidebar}
+            type="button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="14"
+              viewBox="0 0 20 14"
+              fill="none"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <rect width="20" height="2" rx="1" fill="currentColor" />
+              <rect y="6" width="12" height="2" rx="1" fill="currentColor" />
+              <rect y="12" width="20" height="2" rx="1" fill="currentColor" />
+            </svg>
+          </button>
+
           <h1 className="salary-title">Salary</h1>
         </header>
 

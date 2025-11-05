@@ -1,18 +1,17 @@
-
-
 /* ---------- Config / Variables ---------- */
-:root{
+:root {
+  --header-height: 64px;
+  --subheader-gap: 8px;
   --page-bg: #f6f7fb;
   --card-bg: #ffffff;
   --muted: #8b96a8;
-  --accent: #e9eef8;   /* light bluish header row */
+  --accent: #e9eef8; /* light bluish header row */
   --border: #e6e9ef;
   --text: #111827;
-  --shadow: 0 10px 40px rgba(2,6,23,0.08);
+  --shadow: 0 10px 40px rgba(2, 6, 23, 0.08);
   --radius: 12px;
 
-  /* adjust this to your real sidebar width (example: 220px / 240px) */
-  --sidebar-width: 220px;
+  --sidebar-width: 250px;
   --content-gap: 20px;
 }
 
@@ -20,17 +19,17 @@
 .salary-page {
   background: var(--page-bg);
   min-height: 100vh;
-  padding: 18px;
+  padding: 8px 10px 8px 0;
   box-sizing: border-box;
   font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
   color: var(--text);
   position: relative;
   z-index: 0;
+  margin-top: calc(var(--header-height));
+  min-height: calc(100vh - var(--header-height));
 }
 
-/* When the app has a fixed left sidebar, push the page content right on large screens.
-   This prevents the fixed sidebar from overlapping header and content.
-   Change --sidebar-width to match actual sidebar width in your app. */
+/* Desktop: keep space for full sidebar */
 @media (min-width: 1025px) {
   .salary-page {
     margin-left: calc(var(--sidebar-width) + var(--content-gap));
@@ -41,93 +40,116 @@
 /* ---------- Centering container ---------- */
 .salary-root {
   max-width: 1180px;
-  margin: 12px auto;
+  margin: 25px auto;
+  padding: 0 20px;
+  padding-left: 0;
   position: relative;
+  box-sizing: border-box;
 }
 
 /* ---------- Header (hamburger + title) ---------- */
-/* Make header sticky so it stays visible and raise its z-index above sidebar */
 .salary-header {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
-  position: sticky;
-  top: 0;
-  padding: 10px 8px;
-  background: linear-gradient(180deg, rgba(246,247,251,0.95), rgba(246,247,251,0.9));
+  margin-bottom: 0;
+  top: calc(var(--header-height) + var(--subheader-gap));
+  padding: 1px 0;
+  z-index: 900;
+  background: linear-gradient(180deg, rgba(246, 247, 251, 0.95), rgba(246, 247, 251, 0.9));
   backdrop-filter: blur(4px);
-  z-index: 20000;   /* very high so it's above typical sidebars */
+  -webkit-backdrop-filter: blur(4px);
   border-radius: 8px;
   box-sizing: border-box;
+      margin-top: 20px;
 }
 
-/* in case your header sits inside a card you can remove rounding at top, but keep z-index */
-.hamburger {
+/* hamburger button inside salary header */
+.salary-header .hamburger {
   border: none;
   background: transparent;
-  font-size: 18px;
   cursor: pointer;
-  color: #374151;
   padding: 6px 8px;
   border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  color: #374151;
+  font-size: 18px;
+}
+.salary-header .hamburger:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.06);
+}
+.salary-header .hamburger svg {
+  width: 20px;
+  height: 14px;
+  display: block;
 }
 
-/* make hamburger visible on smaller screens too */
-.hamburger:focus { outline: 2px solid rgba(37,99,235,0.15); outline-offset: 2px; }
+/* small-screen tweak */
+@media (max-width: 640px) {
+  .salary-header .hamburger {
+    font-size: 16px;
+    padding: 6px;
+  }
+  .salary-header .hamburger svg {
+    width: 18px;
+    height: 12px;
+  }
+}
 
 .salary-title {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
   margin: 0;
 }
 
-/* ---------- Card that holds the table ---------- */
+/* ---------- Card ---------- */
 .salary-card {
   background: var(--card-bg);
   border-radius: var(--radius);
-  padding: 12px 16px 18px 16px;
+  padding: 0;
   box-shadow: var(--shadow);
-  border: 1px solid rgba(230,233,239,0.9);
+  border: 1px solid rgba(230, 233, 239, 0.9);
   overflow: hidden;
   position: relative;
+  margin-top: 12px;
+  box-sizing: border-box;
 }
 
-/* decorative vertical accent (optional) */
+/* optional decorative accent removed to avoid accidental gap */
 .salary-card::before {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 64px;
-  width: 6px;
-  height: 48px;
-  background: #2f4bd6;
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(47,75,214,0.12);
-  opacity: 0.9;
+  display: none;
 }
 
 /* ---------- Table wrapper for responsiveness ---------- */
 .table-wrap {
   width: 100%;
-  overflow-x: auto;               /* horizontal scroll on small screens */
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
+  box-sizing: border-box;
 }
-
-/* allow the table wrapper to expand full width of the page-root */
-.table-wrap::-webkit-scrollbar { height: 8px; }
-.table-wrap::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 6px; }
+.table-wrap::-webkit-scrollbar {
+  height: 8px;
+}
+.table-wrap::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+}
 
 /* ---------- Table ---------- */
 .salary-table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  min-width: 980px; /* will cause horizontal scroll on smaller screens */
+  min-width: 980px; /* desktop baseline */
   background: transparent;
   font-size: 13px;
   color: #374151;
+  box-sizing: border-box;
 }
 
 /* header row */
@@ -143,66 +165,330 @@
   font-weight: 600;
   font-size: 13px;
   color: #374151;
-  border-bottom: 1px solid var(--border);
+  border: none;
+  vertical-align: middle;
 }
 
-/* round top corners of the header */
-.salary-table thead th:first-child { border-top-left-radius: 8px; }
-.salary-table thead th:last-child  { border-top-right-radius: 8px; }
+/* round top corners of the header strip */
+.salary-table thead tr:first-child th:first-child {
+  border-top-left-radius: var(--radius);
+}
+.salary-table thead tr:first-child th:last-child {
+  border-top-right-radius: var(--radius);
+}
 
 /* body rows */
 .salary-table tbody tr {
   background: #fff;
-  border-bottom: 1px solid #f1f3f6;
+  padding: 20px 40px;
+  box-sizing: border-box;
 }
 
-/* cells */
+/* body cells */
 .salary-table tbody td {
   padding: 20px 20px;
   vertical-align: middle;
   color: #374151;
   font-size: 13px;
-  border-right: 1px solid rgba(230,233,239,0.9);
+  border: none;
+  box-sizing: border-box;
 }
 
-/* avoid double border on last cell */
-.salary-table tbody td:last-child { border-right: none; }
+/* subtle vertical rhythm dividers */
+.salary-table tbody td + td {
+  box-shadow: inset 1px 0 0 rgba(230, 233, 239, 0.9);
+}
 
-/* smaller / narrower column */
-.col-sm { width: 80px; text-align: left; }
-
-/* salary amount alignment */
-.salary-amount { text-align: right; padding-right: 26px; font-weight: 500; }
+/* column sizing */
+.col-sm {
+  width: 80px;
+  text-align: left;
+  padding-left: 12px;
+}
+.salary-amount {
+  padding-right: 26px;
+  font-weight: 500;
+}
 
 /* ---------- Responsive behavior: reduce min-width and paddings ---------- */
 @media (max-width: 1200px) {
-  .salary-root { max-width: 1020px; }
-  .salary-table { min-width: 860px; }
+  .salary-root {
+    max-width: 1020px;
+  }
+  .salary-table {
+    min-width: 860px;
+  }
 }
 
 @media (max-width: 1024px) {
-  /* if sidebar collapses on medium screens, remove left margin */
-  .salary-page { margin-left: 0; padding-right: 20px; }
-  .salary-root { padding: 8px; max-width: 100%; }
-  .salary-card { padding: 10px; }
-  .salary-table thead th, .salary-table tbody td { padding: 14px 12px; }
-  .salary-table { min-width: 700px; }
-  .col-sm { width: 64px; }
-  .salary-card::before { top: 70px; }
+  .salary-page {
+    margin-left: 0;
+    padding-right: 20px;
+  }
+  .salary-root {
+    padding: 8px;
+    max-width: 100%;
+  }
+  .salary-card {
+    margin-top: 10px;
+  }
+  .salary-table {
+    min-width: 700px;
+  }
+  .col-sm {
+    width: 64px;
+  }
 }
 
 @media (max-width: 640px) {
-  .salary-card::before { display: none; }
-  .salary-table { min-width: 600px; }
-  .salary-title { font-size: 16px; }
-  .salary-table thead th, .salary-table tbody td { padding: 12px 10px; font-size: 12px; }
-  .col-sm { width: 48px; }
+  .salary-table {
+    min-width: 600px;
+  }
+  .salary-title {
+    font-size: 16px;
+  }
+  .salary-table thead th,
+  .salary-table tbody td {
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+  .col-sm {
+    width: 48px;
+  }
 }
 
-/* Very small: make table layout auto and allow rows to wrap if user prefers no horizontal scroll */
+/* Very small */
 @media (max-width: 420px) {
-  .salary-table { table-layout: auto; min-width: 500px; }
-  .salary-table thead th { font-size: 12px; padding: 10px 8px; }
-  .salary-table tbody td { padding: 10px 8px; font-size: 12px; }
-  .salary-header { padding: 8px; }
+  .salary-table {
+    table-layout: auto;
+    min-width: 500px;
+  }
+  .salary-table thead th {
+    font-size: 12px;
+    padding: 10px 8px;
+  }
+  .salary-table tbody td {
+    padding: 10px 8px;
+    font-size: 12px;
+  }
+  .salary-header {
+    padding: 8px;
+  }
 }
+
+/* ----------------------------
+   MOBILE
+   ---------------------------- */
+@media (max-width: 640px) {
+  .salary-table {
+    min-width: 0 !important;
+    table-layout: auto !important;
+    width: 100% !important;
+    display: block;
+  }
+
+  .table-wrap,
+  .salary-card {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  .salary-table thead {
+    display: none;
+  }
+
+  .salary-table tbody,
+  .salary-table tr,
+  .salary-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .salary-table tr {
+    background: var(--card-bg);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    padding: 12px;
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+    border: 1px solid var(--border);
+    box-sizing: border-box;
+  }
+
+  .salary-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  /* fallback nth-child labels (kept for legacy) */
+  .salary-table td:nth-child(1)::before { content: "Sr. No"; }
+  .salary-table td:nth-child(2)::before { content: "Teacher Name"; }
+  .salary-table td:nth-child(3)::before { content: "Subject"; }
+  .salary-table td:nth-child(4)::before { content: "Class"; }
+  .salary-table td:nth-child(5)::before { content: "Salary"; }
+  .salary-table td:nth-child(6)::before { content: "Remarks"; }
+
+  .salary-table td {
+    padding: 6px 0;
+    color: #111827;
+    font-size: 14px;
+    line-height: 1.35;
+    white-space: normal;
+    word-break: break-word;
+    overflow: visible;
+    box-shadow: none;
+  }
+
+  .salary-table tbody td + td {
+    box-shadow: none;
+  }
+
+  .salary-table tr:first-child {
+    margin-top: 0;
+  }
+  .salary-table td:last-child {
+    margin-bottom: 0;
+  }
+
+  .salary-table tr:first-of-type::before {
+    content: "";
+    display: block;
+    height: 8px;
+    margin-bottom: 6px;
+  }
+}
+
+/* Two-column card layout for 420–640px */
+@media (min-width: 420px) and (max-width: 640px) {
+  .salary-table tr {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 18px;
+    align-items: start;
+    padding: 12px;
+  }
+
+  .salary-table td:nth-child(2),
+  .salary-table td:nth-child(5) {
+    grid-column: 1 / -1;
+  }
+
+  .salary-table td::before {
+    margin-bottom: 6px;
+  }
+}
+
+/* final tiny polish for very small phones */
+@media (max-width: 380px) {
+  .salary-table tr {
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+  .salary-table td {
+    font-size: 13px;
+    padding: 6px 0;
+  }
+}
+
+/* ----------------------------
+   TABLET TWEAKS (mid-size tablets)
+   targets roughly iPad Air 4 / iPad Pro 11 / Galaxy Tab S7 widths
+   ---------------------------- */
+@media (min-width: 769px) and (max-width: 1180px) {
+  :root {
+    --tablet-sidebar-compact: 72px;
+    --tablet-content-gap: 20px;
+  }
+
+  /* default: do NOT reserve left gap — page occupies full width */
+  .salary-page {
+    margin-left: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 18px !important;
+  }
+
+  /* when sidebar is explicitly opened (JS should toggle .sidebar-open on body), shift content */
+  .sidebar-open .salary-page {
+    margin-left: calc(var(--tablet-sidebar-compact) + var(--tablet-content-gap)) !important;
+  }
+
+  /* container now uses full available width */
+  .salary-root {
+    padding-left: 8px;
+    padding-right: 12px;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 8px auto;
+  }
+
+  .salary-card {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  .salary-table {
+    min-width: 720px !important;
+    table-layout: auto;
+    width: 100%;
+  }
+
+  .salary-table thead th,
+  .salary-table tbody td {
+    padding: 12px 10px;
+    font-size: 13px;
+  }
+
+  .salary-table tbody tr {
+    padding: 10px 14px;
+  }
+
+  .table-wrap {
+    padding-left: 8px;
+    padding-right: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .salary-table tbody td + td {
+    box-shadow: inset 1px 0 0 rgba(230, 233, 239, 0.75);
+  }
+
+  .salary-header .hamburger {
+    z-index: 1100;
+    position: relative;
+  }
+
+  /* fallback narrower tablet tweak */
+  @media (max-width: 940px) {
+    .salary-table {
+      min-width: 640px !important;
+    }
+    .salary-card {
+      margin-top: 10px;
+    }
+  }
+}
+
+/* ----------------------------
+   Accessibility / small polish
+   ---------------------------- */
+
+.page {
+  margin-left: 0 !important;
+}
+
+/* keep root/inner padding small so content doesn't touch edge on tiny screens */
+.salary-root {
+  padding-left: 2px;
+  padding-right: 12px;
+  padding-top: 0px;
+}
+

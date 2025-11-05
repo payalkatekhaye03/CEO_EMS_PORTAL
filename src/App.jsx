@@ -16,8 +16,8 @@ const AppContent = () => {
 
   return (
     <div style={{ display: "flex", width: "100%", height: "100vh" }}>
-      {!isLoginPage && <Sidebar />}
-      <div style={{ flex: 1, padding: "20px", overflowY: "auto" }}>
+      {!isLoginPage}
+      <div style={{ flex: 1, overflowY: "auto" }}>
         <Routes>
           <Route path="/" element={<Login onLoginSuccess={handleLoginSuccess} />} />
           <Route path="/*" element={<AppRoutes />} />

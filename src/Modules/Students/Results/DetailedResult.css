@@ -1,13 +1,177 @@
-/* DetailedResult Page Styles */
+
+
+/* ---------------- Variables ---------------- */
+:root {
+  --app-header-height: 0px;     /* adjust to match your top header height */
+  --toolbar-gap: 12px;
+  --toolbar-offset: calc(var(--app-header-height) + var(--toolbar-gap));
+   --sidebar-width: 250px; 
+  --content-gap: 10px;
+  --card-radius: 12px;
+  --accent-blue: #6476d8;
+  --pill-border: #e6e9ef;
+  --pill-focus: #3b82f6;
+  --muted: #6b7280;
+}
+
+/* ---------- Page root (keep existing behavior) ---------- */
 .detailed-result-page {
   background-color: #f8f9fa;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  margin-top: 20px;
-  margin-left: 250px;
+  margin-top: 60px;
+  margin-left: calc(var(--sidebar-width) + var(--content-gap));
+  box-sizing: border-box;
+
+  /* ensure page content sits below any fixed header */
+  padding-top: calc(12px + var(--app-header-height));
 }
 
+/* ------------------ TOOLBAR (ADDED) ------------------ */
+
+.result-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  /* position below your fixed header */
+  margin-top: var(--toolbar-offset);
+  margin-bottom: 12px;
+  padding: 10px 16px;
+  position: relative;
+  z-index: 60;
+}
+/* -------------------
+   Hamburger button
+
+   /* ---------------- Hamburger button (SVG) ---------------- */
+.hamburger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #111827;          /* sets the stroke/fill color for the SVG */
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Hover state */
+.hamburger:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #2563eb; /* blue tint on hover */
+}
+
+/* Focus (keyboard users) */
+.hamburger:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+  border-radius: 8px;
+}
+
+/* Active (when pressed) */
+.hamburger:active {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Ensure the embedded SVG inherits the button’s color */
+.hamburger svg {
+  display: block;
+  width: 20px;
+  height: 14px;
+  color: inherit;       /* inherit color from .hamburger */
+  fill: currentColor;   /* apply to rects/paths with fill="currentColor" */
+}
+
+
+/* left group: menu icon + page title */
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* menu button (square) */
+.menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  border: 1px solid rgba(15,23,42,0.04);
+  border-radius: 8px;
+  font-size: 18px;
+  color: #374151;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(2,6,23,0.03);
+  padding: 0;
+}
+.menu-btn:hover { background: rgba(0,0,0,0.03); }
+
+/* page title next to menu icon */
+.page-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1;
+}
+
+/* right group: pill style selects */
+.toolbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* pill-style select (visible caret via inline SVG) */
+.pill-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  display: inline-block;
+  background-color: #fff;
+  border: 1px solid var(--pill-border);
+  padding: 8px 22px 8px 14px; /* space for caret */
+  border-radius: 999px;
+  font-size: 14px;
+  color: #111827;
+  min-width: 140px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  transition: border-color .12s ease, box-shadow .12s ease, transform .06s ease;
+
+  /* caret (dark gray) */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8' fill='none'><path d='M1 1l6 6 6-6' stroke='%23333' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}
+
+/* smaller variant if you want a compact year select */
+.pill-select.small {
+  min-width: 90px;
+  padding-right: 36px;
+}
+
+/* focus & hover states */
+.pill-select:hover { border-color: #d2d8e8; }
+.pill-select:focus { outline: none; border-color: var(--pill-focus); box-shadow: 0 6px 20px rgba(59,130,246,0.06); }
+
+/* hide IE native expand arrow */
+.pill-select::-ms-expand { display: none; }
+
+/* ------------------ ORIGINAL BLUE CARD & SCORE STYLES (kept) ------------------ */
 .result-header-details {
   display: flex;
   justify-content: space-between;
@@ -142,3 +306,27 @@
   color: #444;
   margin-left: 4px;
 }
+
+/* ------------------ Responsive tweaks ------------------ */
+@media (max-width: 1100px) {
+  .result-header-details { flex-direction: column; gap: 12px; }
+  .card-box { width: 90%; }
+  .pill-select { min-width: 120px; }
+}
+
+@media (max-width: 768px) {
+  .detailed-result-page { margin-left: 16px; padding: 16px; }
+  .result-toolbar { flex-direction: column; align-items: flex-start; gap: 12px; margin-top: calc(var(--app-header-height) + 8px); }
+  .toolbar-controls { width: 100%; justify-content: flex-start; }
+  .card-box { width: 85%; }
+  .score-image-wrapper { padding: 16px; }
+  .score-details { gap: 14px; }
+}
+
+@media (max-width: 420px) {
+  .page-title { font-size: 16px; }
+  .card-item { font-size: 14px; }
+  .score-image { height: 100px; }
+  .pill-select { min-width: 100px; padding-right: 32px; }
+}
+

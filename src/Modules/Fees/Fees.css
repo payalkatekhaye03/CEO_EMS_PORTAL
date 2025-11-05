@@ -1,5 +1,5 @@
 /* Root container */
-.page {
+.fees-page {
   padding: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f8f9fa;
@@ -8,203 +8,536 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-
-  /* Sidebar space */
-  margin-left: 250px; /* Adjust as per your sidebar */
+  margin-left: 250px;
+  margin-top: 70px;
+  transition: margin-left 0.3s ease;
 }
-
+ 
 /* Header section */
 .fees-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
+  padding: 15px 20px;
+  background: linear-gradient(to bottom, #f9fafb, #f1f2f6);
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: 8px;
   margin-bottom: 20px;
 }
-
-.header-left {
+ 
+.fees-header-left {
   display: flex;
   align-items: center;
+  gap: 12px;
 }
-
-.header-left h2 {
-  margin-left: 10px;
+ 
+.fees-title {
+  margin: 0;
   font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #333;
 }
-
-.menu-icon {
-  font-size: 24px;
+ 
+.fees-hamburger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  color: #111827;
   cursor: pointer;
+  padding: 8px;
+  transition: background-color 0.2s ease;
 }
-
-.header-right {
+ 
+.fees-hamburger:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+ 
+.fees-hamburger:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+ 
+.fees-hamburger svg {
+  width: 20px;
+  height: 14px;
+  display: block;
+  pointer-events: none;
+}
+ 
+.fees-header-right {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
-
-.header-right select {
-  padding: 10px 36px 10px 16px; /* extra right padding for arrow */
-  font-size: 14px;
-  border-radius: 30px;
-  border: 1px solid #ddd;
-  background-color: white;
-  min-width: 150px;
-  cursor: pointer;
-  appearance: none;      /* remove native arrow */
-  position: relative;    /* needed for pseudo-element */
+ 
+/* Custom Select Wrapper */
+.fees-custom-select {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 20px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e5e7eb;
+  transition: border-color 0.2s ease;
 }
-
-.header-right select:hover {
-  border-color: #bbb;
+ 
+.fees-custom-select:hover {
+  border-color: #cbd5e1;
 }
-
-.header-right select:focus {
+ 
+.fees-select {
+  padding: 8px 36px 8px 16px;
+  font-size: 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
   outline: none;
-  border-color: #3e6be1;
-  box-shadow: 0 0 0 3px rgba(62, 107, 225, 0.2);
+  appearance: none;
+  min-width: 150px;
+  color: #333;
 }
-
-/* custom arrow */
-.header-right select::after {
+ 
+.fees-custom-select::after {
   content: "";
   position: absolute;
   right: 16px;
   top: 50%;
-  width: 6px;
-  height: 6px;
-  border-left: 2px solid #333;
-  border-bottom: 2px solid #333;
-  transform: translateY(-50%) rotate(-45deg);
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
   pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%236b7280' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
-
+ 
 /* Table container */
+.fees-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+ 
+.fees-table-container {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  flex: 1;
+}
+ 
 .fees-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
-  border-radius: 10px;
-  overflow: hidden;
+  min-width: 700px;
 }
-
-.fees-table th,
-.fees-table td {
-  padding: 14px 18px;
+ 
+.fees-table-head {
+  background-color: #DCE1EE;
+}
+ 
+.fees-table-header {
+  padding: 16px 20px;
+  text-align: center;
+  border-bottom: 1px solid #e1e1e1;
+  font-weight: 600;
+  color: #363636;
+  font-size: 14px;
+}
+ 
+.fees-table-body .fees-table-row:hover {
+  background-color: #f8fafc;
+}
+ 
+.fees-table-cell {
+  padding: 14px 20px;
   text-align: center;
   border-bottom: 1px solid #e1e1e1;
   font-size: 14px;
+  color: #555;
 }
-
-.fees-table th {
-  background-color: #DCE1EE;
-  color: #363636;
-  font-weight: 600;
-}
-
-.fees-table tr:hover {
-  background-color: #e9f0fe;
-}
-
-.no-data {
+ 
+.fees-no-data {
+  padding: 40px 20px;
   text-align: center;
-  margin: 20px 0;
   font-weight: 600;
   color: #777;
+  background: #fafafa;
+  font-size: 16px;
 }
-
-/* Bottom bar */
-.fees-bottom-bar {
+ 
+/* Pagination */
+.fees-pagination {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 15px;
-  padding: 10px 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 15px;
 }
-
-/* Pagination styling */
-.pagination {
+ 
+.fees-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+ 
+.fees-pagination-button {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #374151;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+ 
+.fees-pagination-button:hover:not(.fees-pagination-button-disabled) {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+ 
+.fees-pagination-button-disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+ 
+.fees-pagination-numbers {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 13px;
-  color: #222;
 }
-
-.pagination span {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.2s ease;
-}
-
-.pagination-page {
-  border: 1.5px solid #3e6be1;
-  color: #3e6be1;
-  font-weight: 600;
-}
-
-.pagination-page.active {
-  background-color: #3e6be1;
-  color: white;
-}
-
-.pagination-prev,
-.pagination-next {
-  color: #222;
-  font-weight: 500;
-  padding: 4px 8px;
+ 
+.fees-pagination-page {
+  width: 36px;
+  height: 36px;
   border-radius: 6px;
-  cursor: pointer;
-  user-select: none;
-  border: none;
   background: transparent;
-  font-size: 14px;
-  transition: color 0.2s ease;
-}
-
-.pagination-prev[style*="none"],
-.pagination-next[style*="none"] {
-  color: #888;
-  cursor: default;
-}
-
-.pagination-prev:hover:not([style*="none"]),
-.pagination-next:hover:not([style*="none"]),
-.pagination-page:hover:not(.active) {
-  background-color: #e2e6ff;
-  color: #3e6be1;
-}
-
-/* Rows per page dropdown */
-.rows-dropdown select {
-  padding: 8px 12px;
-  font-size: 14px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  background-color: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
   cursor: pointer;
-  min-width: 70px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
-
-.rows-dropdown select:hover {
-  border-color: #bbb;
+ 
+.fees-pagination-page:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
 }
-
-.rows-dropdown select:focus {
-  outline: none;
+ 
+.fees-pagination-page-active {
+  background: #3e6be1;
+  color: #fff;
   border-color: #3e6be1;
-  box-shadow: 0 0 0 3px rgba(62, 107, 225, 0.2);
+}
+ 
+.fees-pagination-page-active:hover {
+  background: #2d5acf;
+  border-color: #2d5acf;
+}
+ 
+.fees-pagination-ellipsis {
+  padding: 0 8px;
+  color: #6b7280;
+  font-weight: 500;
+}
+ 
+.fees-rows-dropdown {
+  display: flex;
+  align-items: center;
+}
+ 
+.fees-rows-select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+ 
+.fees-rows-select:hover {
+  border-color: #9ca3af;
+}
+ 
+.fees-rows-select:focus {
+  border-color: #3e6be1;
+  box-shadow: 0 0 0 3px rgba(62, 107, 225, 0.1);
+}
+ 
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .fees-page {
+    margin-left: 0px;
+    padding: 18px;
+  }
+  
+  .fees-header {
+    padding: 12px 16px;
+  }
+  
+  .fees-table {
+    min-width: 650px;
+  }
+}
+ 
+@media (max-width: 992px) {
+  .fees-page {
+    margin-left: 0;
+    padding: 15px;
+  }
+  
+  .fees-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+  
+  .fees-header-left {
+   justify-content:flex-start;
+    margin-top: 15px;
+  }
+  
+  .fees-header-right {
+    justify-content: center;
+  }
+  
+  .fees-custom-select {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+ 
+@media (max-width: 768px) {
+  .fees-page {
+    padding: 12px;
+    margin-top: 60px;
+  }
+  
+  .fees-header {
+    padding: 10px 12px;
+    border-radius: 6px;
+  }
+  
+  .fees-title {
+    font-size: 20px;
+  }
+  
+  .fees-header-right {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .fees-custom-select {
+    width: 100%;
+  }
+  
+  .fees-select {
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .fees-table-container {
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  
+  .fees-table {
+    min-width: 600px;
+  }
+  
+  .fees-table-header,
+  .fees-table-cell {
+    padding: 12px 15px;
+    font-size: 13px;
+  }
+  
+  .fees-pagination {
+    padding: 15px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .fees-pagination-controls {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .fees-pagination-numbers {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+ 
+@media (max-width: 480px) {
+  .fees-page {
+    padding: 10px;
+  }
+  
+  .fees-header {
+    padding: 8px 10px;
+    margin-bottom: 15px;
+  }
+  
+  .fees-hamburger {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .fees-title {
+    font-size: 18px;
+  }
+  
+  .fees-table {
+    min-width: 500px;
+  }
+  
+  .fees-table-header,
+  .fees-table-cell {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  
+  .fees-pagination {
+    padding: 12px;
+  }
+  
+  .fees-pagination-button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .fees-pagination-page {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+}
+ 
+/* Mobile Table Card View */
+@media (max-width: 768px) {
+  .fees-table {
+    min-width: 100% !important;
+  }
+  
+  .fees-table-head {
+    display: none;
+  }
+  
+  .fees-table-row {
+    display: block;
+    margin-bottom: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .fees-table-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 8px;
+    border-bottom: 1px solid #f0f2f5;
+    text-align: left;
+    border: none;
+  }
+  
+  .fees-table-cell:last-child {
+    border-bottom: none;
+  }
+  
+  .fees-table-cell::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #555;
+    font-size: 13px;
+    min-width: 120px;
+  }
+}
+ 
+/* Very small screens */
+@media (max-width: 360px) {
+  .fees-page {
+    padding: 8px;
+  }
+  
+  .fees-header {
+    padding: 6px 8px;
+  }
+  
+  .fees-table-row {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .fees-table-cell {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+  
+  .fees-table-cell::before {
+    font-size: 12px;
+    min-width: 100px;
+  }
+  
+  .fees-pagination-controls {
+    gap: 4px;
+  }
+  
+  .fees-pagination-button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  
+  .fees-pagination-page {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+}
+ 
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .fees-hamburger,
+  .fees-custom-select,
+  .fees-pagination-button,
+  .fees-pagination-page,
+  .fees-table-row {
+    transition: none;
+  }
+}
+ 
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .fees-table-header {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .fees-table-cell {
+    border-bottom: 2px solid #000;
+  }
 }
