@@ -1,0 +1,180 @@
+.attendance-summary-header {
+  padding: 22px;
+  margin-top: 85px;
+  background: #f6f7fa;
+  min-height: 100vh;
+  font-family: Inter, system-ui, sans-serif;
+  box-sizing: border-box;
+}
+ 
+@media (min-width: 1025px) {
+  .attendance-summary-header {
+    margin-left: calc(var(--qbank-sidebar-width, 260px) + var(--qbank-content-gap, 20px));
+    padding-left: 22px;
+    padding-right: 40px;
+  }
+}
+ 
+@media (max-width: 1024px) {
+  .attendance-summary-header {
+    margin-left: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+ 
+.attendance-summary-header-root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  width: 100%;
+}
+ 
+.attendance-summary-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+ 
+.attendance-summary-hamburger {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(2, 6, 23, 0.08);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.attendance-summary-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+}
+ 
+.attendance-summary-filter-box {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+ 
+ 
+.pill-select-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 6px 16px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(2, 6, 23, 0.08);
+  min-width: 140px;
+}
+ 
+.pill-select {
+  appearance: none;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  padding: 6px 32px 6px 4px;
+  cursor: pointer;
+  outline: none;
+  color: #1d1d1d;
+  width: 100%;
+}
+ 
+.pill-select-icon {
+  position: absolute;
+  right: 12px;
+  font-size: 12px;
+  color: #6f6f6f;
+  pointer-events: none;
+}
+ 
+ 
+.attendance-summary-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(2, 6, 23, 0.06);
+  border: 1px solid #eceff6;
+  overflow-x: auto;
+}
+ 
+.attendance-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+ 
+.attendance-summary-table th {
+  background: #f3f4f8;
+  padding: 12px;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1px solid #e6e9ef;
+  color: #2b2f36;
+  white-space: nowrap;
+}
+ 
+.attendance-summary-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f1f4;
+  color: #3a3f48;
+  white-space: nowrap;
+}
+ 
+.attendance-summary-table tr:last-child td {
+  border-bottom: none;
+}
+ 
+ 
+@media (max-width: 768px) {
+  .attendance-summary-header-root {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+ 
+  .attendance-summary-filter-box {
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+  }
+ 
+ 
+  .pill-select-wrapper {
+    width: 100%;
+    padding: 10px 18px;
+  }
+ 
+  .pill-select {
+    font-size: 15px;
+    padding: 8px 32px 8px 6px;
+  }
+ 
+  .pill-select-icon {
+    right: 14px;
+    font-size: 14px;
+  }
+ 
+ 
+  .attendance-summary-card {
+    padding: 16px;
+  }
+}
+ 
+@media (max-width: 480px) {
+  .attendance-summary-title {
+    font-size: 20px;
+  }
+ 
+  .pill-select {
+    font-size: 14px;
+  }
+}
+ 

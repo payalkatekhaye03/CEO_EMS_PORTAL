@@ -145,6 +145,9 @@ const Sidebar = ({ isOpen = undefined, onClose = undefined, showFloating = false
                 <li className={location.pathname === "/teacher/salary" ? "active" : ""}>
                   <Link to="/teacher/salary">Salary</Link>
                 </li>
+                <li className={location.pathname === "/teacher/attendance-summary" ? "active" : ""}>
+                  <Link to="/teacher/attendance-summary">Attendance Summary</Link>
+                </li>
               </ul>
             )}
 

@@ -1,88 +1,171 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Header from "../../../Components/Header/Header";
 import Sidebar from "../../../Components/SideBar/SideBar";
+import { FaEdit, FaTrash } from "react-icons/fa";
+
+import api from "../../../api/api"; //   <-- Your axios instance
 import "./Salary.css";
 
-const teachers = [
-  { id: 1, name: "Seema Bhavsar", subject: "Mathematics", class: "11th", date: "05/01/2025", salary: "₹ 40,000" },
-  { id: 2, name: "Vidya Gupta", subject: "Physics", class: "11th", date: "05/01/2025", salary: "₹ 40,000" },
-  { id: 3, name: "Kavya Nair", subject: "Biology", class: "11th", date: "05/01/2025", salary: "₹ 40,000" },
-  { id: 4, name: "Rajesh Khair", subject: "Mathematics", class: "11th", date: "05/01/2025", salary: "₹ 40,000" },
-  { id: 5, name: "Meera Kapoor", subject: "Physics", class: "11th", date: "05/01/2025", salary: "₹ 40,000" },
-  { id: 6, name: "Amit Kumar", subject: "Biology", class: "12th", date: "05/01/2025", salary: "₹ 40,000" },
-  { id: 7, name: "Karan Desai", subject: "Physics", class: "12th", date: "05/01/2025", salary: "₹ 40,000" },
-  { id: 8, name: "Meera Kapoor", subject: "Mathematics", class: "12th", date: "05/01/2025", salary: "₹ 40,000" },
-  { id: 9, name: "Arjun Sharma", subject: "Physics", class: "12th", date: "05/01/2025", salary: "₹ 40,000" },
-  { id: 10, name: "Meera Kapoor", subject: "Biology", class: "12th", date: "05/01/2025", salary: "₹ 40,000" },
-];
-
 export default function Salary() {
-  // control sidebar open/close
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // handler to toggle
-  const toggleSidebar = () => setSidebarOpen((s) => !s);
+  const [structures, setStructures] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const getAuthHeader = () => {
+    const token = localStorage.getItem("token");
+    return token ? { Authorization: `Bearer ${token}` } : {};
+  };
+
+  // 🔹 FETCH SALARY STRUCTURE LIST FROM API
+  const fetchStructures = async () => {
+    setLoading(true);
+
+    try {
+      const res = await api.get("/teacherSalary/structures", {
+        headers: getAuthHeader(),
+      });
+
+      console.log("Fetched Structures:", res.data);
+
+      if (res.data?.data) {
+        setStructures(res.data.data);
+      }
+    } catch (err) {
+      console.error("Fetch Error:", err);
+      alert("Failed to load salary structure list");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchStructures();
+  }, []);
+
+  const deleteRecord = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this salary structure?"))
+      return;
+
+    try {
+      await api.delete(`/teacherSalary/structure/${id}`, {
+        headers: getAuthHeader(),
+      });
+
+      alert("Deleted successfully!");
+      fetchStructures();
+    } catch (err) {
+      console.error("Delete error:", err);
+      alert("Failed to delete record");
+    }
+  };
 
   return (
     <div className="salary-page">
       <Header />
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      <div className="salary-root">
-        <header className="salary-header">
+      <div className="salary-wrapper">
+        {/* HEADER */}
+        <div className="salary-header">
           <button
-            className="hamburger"
-            aria-label="Open menu"
-            aria-expanded={sidebarOpen}
-            onClick={toggleSidebar}
-            type="button"
+            className="salary-hamburger"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="14"
-              viewBox="0 0 20 14"
-              fill="none"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <rect width="20" height="2" rx="1" fill="currentColor" />
-              <rect y="6" width="12" height="2" rx="1" fill="currentColor" />
-              <rect y="12" width="20" height="2" rx="1" fill="currentColor" />
-            </svg>
+            ☰
           </button>
 
-          <h1 className="salary-title">Salary</h1>
-        </header>
+          <h1 className="salary-title">Salary Structure List</h1>
 
+          <button
+            className="salary-add-btn"
+            onClick={() => navigate("/teacher/salary/add")}
+          >
+            + Add Salary
+          </button>
+        </div>
+
+        {/* TABLE */}
         <div className="salary-card">
-          <div className="table-wrap">
-            <table className="salary-table" role="table" aria-label="Salary table">
-              <thead>
-                <tr>
-                  <th className="col-sm">Sr. No.</th>
-                  <th>Teacher Name</th>
-                  <th>Subject</th>
-                  <th>Class</th>
-                  <th>Dates</th>
-                  <th className="col-sm">Salary</th>
-                </tr>
-              </thead>
+          <table className="salary-table">
+            <thead>
+              <tr>
+                <th>Sr</th>
+                <th>Teacher ID</th>
+                <th>Teacher Name</th>
+                <th>Per Day Salary</th>
+                <th>Annual Salary</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Updated</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
 
-              <tbody>
-                {teachers.map((t) => (
-                  <tr key={t.id}>
-                    <td className="col-sm">{t.id}</td>
-                    <td>{t.name}</td>
-                    <td>{t.subject}</td>
-                    <td>{t.class}</td>
-                    <td>{t.date}</td>
-                    <td className="col-sm salary-amount">{t.salary}</td>
+            <tbody>
+              {loading ? (
+                <tr>
+                  <td colSpan="8" style={{ textAlign: "center" }}>
+                    Loading...
+                  </td>
+                </tr>
+              ) : structures.length === 0 ? (
+                <tr>
+                  <td colSpan="8" style={{ textAlign: "center" }}>
+                    No records found.
+                  </td>
+                </tr>
+              ) : (
+                structures.map((item, index) => (
+                  <tr key={item.structureId}>
+                   <td>{index + 1}</td>
+                    <td>{item.teacherId}</td>
+                   <td>{item.teacherName}</td>
+                    <td>₹ {item.perDaySalary}</td>
+                    <td>₹ {item.annualSalary}</td>
+
+                    {/* STATUS */}
+                    <td>
+                      <span
+                        className={
+                          item.status === "ACTIVE"
+                            ? "status-active"
+                            : "status-inactive"
+                        }
+                      >
+                        {item.status}
+                      </span>
+                    </td>
+
+                    {/* CREATED & UPDATED */}
+                    <td>{item.createdAt?.split("T")[0] || "-"}</td>
+                    <td>{item.updatedAt?.split("T")[0] || "-"}</td>
+
+                    <td className="salary-action-buttons">
+                      <button
+                        className="salary-edit-icon-btn"
+                        onClick={() =>
+                          navigate(`/teacher/salary/structure/${item.structureId}`)
+                        }
+                      >
+                        <FaEdit />
+                      </button>
+
+                      <button
+                        className="salary-delete-icon-btn"
+                        onClick={() => deleteRecord(item.structureId)}
+                      >
+                        <FaTrash />
+                      </button>
+                    </td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

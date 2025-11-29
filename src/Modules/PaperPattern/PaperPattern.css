@@ -414,6 +414,46 @@
   .pp-root { padding-left: 12px; padding-right: 12px; margin-top: calc(var(--header-height) + 6px); }
   .pp-page { padding-left: 6px; padding-right: 6px; }
 }
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.edit-icon-btn,
+.delete-icon-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s ease;
+}
+
+.edit-icon-btn {
+  color: #007bff;
+}
+.edit-icon-btn:hover {
+  color: #0056b3;
+}
+
+.delete-icon-btn {
+  color: #dc3545;
+}
+.delete-icon-btn:hover {
+  color: #a71d2a;
+}
+
+.pp-cancel {
+  background-color: #999;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.pp-cancel:hover {
+  background-color: #777;
+}
 
 
 

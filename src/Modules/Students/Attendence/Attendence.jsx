@@ -315,7 +315,7 @@ export default function Attendence() {
               <option>12th</option>
             </select>
  
-            <select
+            {/* <select
               className="attendence-filter-select"
               value={year}
               onChange={(e) => {
@@ -326,7 +326,7 @@ export default function Attendence() {
               <option>2024</option>
               <option>2023</option>
               <option>2022</option>
-            </select>
+            </select> */}
           </div>
         </div>
  

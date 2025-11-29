@@ -15,8 +15,8 @@ import Results from "../Modules/Students/Results/Results";
 import Paper from "../Modules/Papers/Paper";
 import PaperPattern from "../Modules/PaperPattern/PaperPattern";
 import EditFees from "../Modules/Fees/EditFees";
-// import DetailedResult from "../Modules/Students/Results/DetailedResult";
-
+import AddSalary from "../Modules/Teacher/Salary/AddSalary";
+import AttendanceSummary from "../Modules/Teacher/Attendance/AttendanceSummary";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -31,6 +31,10 @@ const AppRoutes = () => {
       <Route path="/teacher/papers" element={<Papers />} />
       <Route path="/teacher/question-bank" element={<QuestionBank />} />
       <Route path="/teacher/salary" element={<Salary />} />
+      <Route path="/teacher/salary/add" element={<AddSalary />} />
+      <Route path="/teacher/salary/edit/:id" element={<AddSalary />} />
+      <Route path="/teacher/attendance-summary" element={<AttendanceSummary/>} /> 
+      {/* <Route path="/teacher/salary/edit/:teacherId" element={<EditSalary />} /> */}
 
       {/* Students */}
       <Route path="/students/attendence" element={<Attendence />} />
@@ -44,7 +48,7 @@ const AppRoutes = () => {
       <Route path="/papers" element={<Paper />} />
       <Route path="/papers/paper-patterns" element={<PaperPattern />} />
       <Route path="/profile" element={<Profile />} />
-      
+
       {/* Default redirect */}
       <Route path="*" element={<Dashboard />} />
     </Routes>
@@ -52,4 +56,3 @@ const AppRoutes = () => {
 };
 
 export default AppRoutes;
-  
