@@ -319,7 +319,7 @@ export default function MonthlySalary() {
                 className="monthly-save-btn"
                 onClick={() => window.location.reload()}
               >
-                PAY
+                Marked As PAY
               </button>
              <button
                 type="submit"
