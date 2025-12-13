@@ -15,8 +15,11 @@ import Results from "../Modules/Students/Results/Results";
 import Paper from "../Modules/Papers/Paper";
 import PaperPattern from "../Modules/PaperPattern/PaperPattern";
 import EditFees from "../Modules/Fees/EditFees";
-import AddSalary from "../Modules/Teacher/Salary/AddSalary";
+import Salarystructure from "../Modules/Teacher/Salary/Salarystructure"
 import AttendanceSummary from "../Modules/Teacher/Attendance/AttendanceSummary";
+
+import MonthlySalary from "../Modules/Teacher/Salary/MonthlySalary";
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -31,10 +34,11 @@ const AppRoutes = () => {
       <Route path="/teacher/papers" element={<Papers />} />
       <Route path="/teacher/question-bank" element={<QuestionBank />} />
       <Route path="/teacher/salary" element={<Salary />} />
-      <Route path="/teacher/salary/add" element={<AddSalary />} />
-      <Route path="/teacher/salary/edit/:id" element={<AddSalary />} />
+      <Route path="/teacher/salary/add" element={<Salarystructure />} />
       <Route path="/teacher/attendance-summary" element={<AttendanceSummary/>} /> 
       {/* <Route path="/teacher/salary/edit/:teacherId" element={<EditSalary />} /> */}
+      <Route path="/teacher/salary/monthly" element={<MonthlySalary />} />
+
 
       {/* Students */}
       <Route path="/students/attendence" element={<Attendence />} />

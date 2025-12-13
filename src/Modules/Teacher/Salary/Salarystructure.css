@@ -1,0 +1,269 @@
+:root {
+  --bg: #f6f7fb;
+  --white: #fff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e6e9ef;
+  --primary: #667eea;
+  --primary2: #764ba2;
+  --radius: 12px;
+  --shadow: 0 8px 30px rgba(2, 6, 23, 0.06);
+  --sidebar-width: 250px;
+}
+
+/* Layout */
+.salarystructure-layout {
+  width: 100%;
+  height: 100%;
+}
+
+.salarystructure-content {
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+/* Page container */
+.salarystructure-page-container {
+  flex: 1;
+  padding: 20px 30px;
+  margin-left: var(--sidebar-width); 
+  margin-top: 81px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Title */
+.salarystructure-title {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ---------- FORM ---------- */
+.salarystructure-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+
+.salarystructure-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.salarystructure-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.salarystructure-input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.salarystructure-btnrow {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.salarystructure-backbtn,
+.salarystructure-savebtn {
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.salarystructure-savebtn {
+  background: #6c63ff;
+  color: white;
+}
+
+.salarystructure-backbtn {
+  background: #e8e8e8;
+}
+/* ---------------------- */
+/* CLEAN PROFESSIONAL TABLE */
+/* ---------------------- */
+
+.salarystructure-table {
+  margin-top: 25px;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.salarystructure-tablebox {
+  width: 100%;
+  border-collapse: collapse;  /* IMPORTANT: no spacing */
+  background: white;
+}
+
+/* Header */
+.salarystructure-tablebox thead th {
+  background: #f3f4f6;
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+/* Body rows */
+.salarystructure-tablebox tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Cells */
+.salarystructure-tablebox tbody td {
+  padding: 14px 18px;
+  font-size: 15px;
+  color: #374151;
+  white-space: nowrap;
+}
+
+/* Remove block look */
+.salarystructure-tablebox tbody tr td:first-child,
+.salarystructure-tablebox tbody tr td:last-child {
+  border-radius: 0 !important;
+}
+
+/* Hover row effect */
+.salarystructure-tablebox tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* Action Buttons */
+.salarystructure-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.salarystructure-editbtn, .salarystructure-deletebtn {
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.salarystructure-editbtn {
+  background: #fbbf24;
+}
+.salarystructure-editbtn svg {
+  color: white;
+  font-size: 16px;
+}
+
+.salarystructure-deletebtn {
+  background: #ef4444;
+}
+.salarystructure-deletebtn svg {
+  color: white;
+  font-size: 16px;
+}
+
+.salarystructure-editbtn:hover {
+  background: #d99809;
+}
+.salarystructure-deletebtn:hover {
+  background: #c53030;
+}
+
+
+/* ---------- ACTION BUTTONS ---------- */
+.salarystructure-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.salarystructure-editbtn {
+  background: #fbbf24;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+}
+.salarystructure-editbtn svg {
+  font-size: 16px;
+  color: white;
+}
+
+.salarystructure-deletebtn {
+  background: #ef4444;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+}
+.salarystructure-deletebtn svg {
+  font-size: 16px;
+  color: white;
+}
+.status-active {
+  color: green;
+  font-weight: 600;
+}
+
+.status-inactive {
+  color: red;
+  font-weight: 600;
+}
+
+/* Hover Effects */
+.salarystructure-editbtn:hover { background: #d99809; }
+.salarystructure-deletebtn:hover { background: #c53030; }
+
+/* No Records */
+.salarystructure-nodata {
+  text-align: center;
+  padding: 14px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* --------------------------- */
+/* RESPONSIVE FIXES           */
+/* --------------------------- */
+
+@media (max-width: 1024px) {
+  .salarystructure-tablebox {
+    min-width: 750px;
+  }
+}
+
+@media (max-width: 768px) {
+  .salarystructure-page-container {
+    margin-left: 0;
+    padding: 15px;
+  }
+  .salarystructure-form {
+    grid-template-columns: 1fr;
+  }
+  .salarystructure-tablebox {
+    min-width: 650px;
+  }
+}
+
+@media (max-width: 480px) {
+  .salarystructure-table {
+    padding: 0 5px;
+  }
+  .salarystructure-tablebox {
+    min-width: 600px;
+  }
+}

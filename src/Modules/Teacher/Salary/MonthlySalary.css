@@ -1,0 +1,211 @@
+:root {
+  --bg: #f6f7fb;
+  --white: #fff;
+  --border: #e6e9ef;
+  --primary: #667eea;
+  --primary2: #764ba2;
+  --shadow: 0 8px 30px rgba(2, 6, 23, 0.06);
+  --sidebar-width: 250px;
+}
+
+/* PAGE */
+.monthly-page {
+  background: var(--bg);
+  min-height: 100vh;
+  padding-top: 70px;
+  font-family: Inter, sans-serif;
+}
+
+.monthly-wrapper {
+  margin-left: var(--sidebar-width);
+  padding: 20px;
+}
+
+@media (max-width: 992px) {
+  .monthly-wrapper {
+    margin-left: 0;
+  }
+}
+
+/* HEADER */
+.monthly-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 22px;
+  border-radius: 12px;
+  background: #eef2ff;
+  margin-bottom: 20px;
+}
+
+.monthly-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.monthly-hamburger {
+  font-size: 22px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* FILTER FORM */
+.monthly-filter-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.monthly-filter-form input,
+.monthly-filter-form select {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: 130px;
+  font-size: 14px;
+}
+
+/* MOBILE FILTER */
+@media (max-width: 768px) {
+  .monthly-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .monthly-filter-form {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .monthly-filter-form input,
+  .monthly-filter-form select,
+  .monthly-filter-form button {
+    width: 100%;
+  }
+}
+
+/* TABLE */
+.monthly-table-card {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+}
+
+.monthly-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+.monthly-table th,
+.monthly-table td {
+  padding: 14px;
+  font-size: 14px;
+}
+
+.monthly-table th {
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+.monthly-table tr:hover {
+  background: #f9fbff;
+}
+
+/* MONTHLY SALARY FORM */
+.monthly-form-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.monthly-form-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* 3 Inputs per Row */
+.monthly-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px 30px;
+}
+
+.monthly-group label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.monthly-group input,
+.monthly-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+/* BUTTON CONTAINER */
+.monthly-buttons {
+  grid-column: span 3;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* COMMON BUTTON STYLE */
+.monthly-buttons button {
+  min-width: 140px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+/* Cancel Button */
+.monthly-cancel-btn {
+  background: #f1f1f1;
+  color: #444;
+  border: 1px solid var(--border);
+}
+
+.monthly-cancel-btn:hover {
+  background: #e4e4e4;
+}
+
+/* Generate Button */
+.monthly-save-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  color: white;
+}
+
+.monthly-save-btn:hover {
+  opacity: 0.92;
+}
+
+/* MOBILE FORM */
+@media (max-width: 768px) {
+  .monthly-form {
+    grid-template-columns: 1fr;
+  }
+
+  .monthly-buttons {
+    justify-content: center;
+  }
+}

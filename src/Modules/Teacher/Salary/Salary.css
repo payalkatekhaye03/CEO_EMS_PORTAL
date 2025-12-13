@@ -17,49 +17,55 @@
 /* ------------------------------------------
    SALARY LIST PAGE
 ------------------------------------------- */
-.salary-page {
+.salary-page,
+.addsalary-page {
   background: var(--bg);
   min-height: 100vh;
   padding-top: 70px;
   font-family: Inter, sans-serif;
 }
 
-/* Wrapper */
-.salary-wrapper {
+/* WRAPPER */
+.salary-wrapper,
+.addsalary-wrapper {
   margin-left: var(--sidebar-width);
   padding: 20px;
-  width: calc(100% - var(--sidebar-width));
-  overflow-x: auto;
 }
-
-/* Mobile Fix */
 @media (max-width: 992px) {
-  .salary-wrapper {
+  .salary-wrapper,
+  .addsalary-wrapper {
     margin-left: 0;
     width: 100%;
   }
 }
 
-/* Header */
-.salary-header {
+/* HEADER */
+.salary-header,
+.addsalary-header {
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 16px 22px;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
- 
   margin-bottom: 16px;
+  background: #eef2ff;
+  border: 1px solid #e5e7eb;
+}
+.addsalary-header {
+  margin-bottom: 20px;
+  justify-content: space-between;
 }
 
-.salary-hamburger {
+.salary-hamburger,
+.addsalary-hamburger {
   border: none;
   background: transparent;
   font-size: 22px;
   cursor: pointer;
 }
 
-.salary-title {
+.salary-title,
+.addsalary-title {
   font-size: 20px;
   font-weight: 700;
 }
@@ -92,19 +98,16 @@
   min-width: 900px;
 }
 
-.salary-table th {
-  padding: 14px;
-  font-size: 14px;
-  font-weight: 600;
-
-  color: #374151;
-  border-bottom: 1px solid #e5e7eb;
-}
-
+.salary-table th,
 .salary-table td {
   padding: 14px;
   font-size: 14px;
-  color: #111;
+}
+
+.salary-table th {
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .salary-table tbody tr:hover {
@@ -169,60 +172,10 @@
 }
 
 /* ------------------------------------------
-   RESPONSIVE TABLE (MOBILE)
-------------------------------------------- */
-@media (max-width: 768px) {
-  .salary-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .salary-add-btn {
-    width: 100%;
-  }
-
-  .salary-card {
-    border: none;
-    box-shadow: none;
-  }
-
-  .salary-table {
-    min-width: 650px;
-  }
-}
-
-/* ------------------------------------------
    ADD SALARY / STRUCTURE FORM
 ------------------------------------------- */
-.addsalary-page {
-  background: var(--bg);
-  min-height: 100vh;
-  padding-top: 70px;
-  font-family: Inter, sans-serif;
-}
-
-.addsalary-wrapper {
-  margin-left: var(--sidebar-width);
-  padding: 20px;
-}
-@media (max-width: 992px) {
-  .addsalary-wrapper {
-    margin-left: 0;
-  }
-}
-
-.addsalary-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 22px;
-  border-radius: 12px;
-  background: #eef2ff;
-  margin-bottom: 20px;
-}
-
 .addsalary-card {
-  background: white;
+  background: var(--white);
   padding: 25px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
@@ -279,7 +232,7 @@
   border: none;
 }
 
-/* Mobile Form */
+/* MOBILE FORM */
 @media (max-width: 768px) {
   .addsalary-grid {
     grid-template-columns: 1fr;
@@ -293,4 +246,33 @@
   .addsalary-cancel {
     width: 100%;
   }
+
+  .salary-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .salary-add-btn {
+    width: 100%;
+  }
+}
+.salary-header .salary-add-btn {
+  margin-left: 0;
+}
+
+.salary-header {
+  gap: 12px;
+}
+
+.salary-header button:last-child {
+  margin-left: auto;   /* Only Add Salary button stays right */
+}
+
+.salary-btn-group {
+  display: flex;
+  gap: 10px;       /* space of 10px between buttons */
+  margin-left: auto; /* pushes group to the right */
+}
+
+.salary-btn-group .salary-add-btn {
+  margin-left: 0 !important; /* removes unwanted auto margin */
 }

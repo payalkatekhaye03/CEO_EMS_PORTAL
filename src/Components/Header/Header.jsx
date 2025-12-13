@@ -1,8 +1,5 @@
-
 import React from "react";
 import "./Header.css";
-
-
 import SchoolLogo from "../../assets/Images/concept_school_logo.png";
 import ProfileImage from "../../assets/Images/Profile_image.png";
 
